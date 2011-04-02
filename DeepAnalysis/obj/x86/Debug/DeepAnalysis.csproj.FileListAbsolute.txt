@@ -1,5 +1,0 @@
-C:\Users\jt\Documents\Visual Studio 2010\Projects\DeepAnalysis\DeepAnalysis\bin\Debug\DeepAnalysis.exe
-C:\Users\jt\Documents\Visual Studio 2010\Projects\DeepAnalysis\DeepAnalysis\bin\Debug\DeepAnalysis.pdb
-C:\Users\jt\Documents\Visual Studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\ResolveAssemblyReference.cache
-C:\Users\jt\Documents\Visual Studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.exe
-C:\Users\jt\Documents\Visual Studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.pdb
