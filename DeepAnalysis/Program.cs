@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DeepAnalysis.Net;
+using DeepAnalysis.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DeepAnalysis.Parsers;
-using DeepAnalysis.Core;
 using System.Xml.Serialization;
 using System.IO;
+using DeepAnalysis.Cube;
 
 namespace DeepAnalysis
 {
@@ -18,15 +19,24 @@ namespace DeepAnalysis
             //McdiCardParser cardParser = new McdiCardParser("Test");
             //cardParser.ParseUrl("chk/en/309.html");
 
+            //McdiPricer pricer = new McdiPricer();
+            //pricer.PriceCard("http://partner.tcgplayer.com/syn/Synidcate.ashx");
+
+            GdocCube cube = new GdocCube("jtraviswebb", "");
+            cube.Entries.Add(new CubeEntry("TestCardName", "TestSetName", 1000, CubeStatus.Emeritus));
+            cube.Save();
+            //GdocCube cube = new GdocCube("knifebrightinsight", "");
+            Console.ReadLine();
+
             // Pull from the web
-            McdiParser parser = new McdiParser();
-            List<Card> db = parser.Parse();
+            //McdiSiteParser parser = new McdiSiteParser();
+            //List<Card> db = parser.Parse();
 
             // Serialization
-            XmlSerializer serializer = new XmlSerializer(db.GetType());
-            TextWriter textWriter = new StreamWriter(@"C:\cards.xml");
-            serializer.Serialize(textWriter, db);
-            textWriter.Close();
+            //XmlSerializer serializer = new XmlSerializer(db.GetType());
+            //TextWriter textWriter = new StreamWriter(@"C:\cards.xml");
+            //serializer.Serialize(textWriter, db);
+            //textWriter.Close();
 
             // Deserialization
             //TextReader reader = new StreamReader(@"C:\cards.xml");

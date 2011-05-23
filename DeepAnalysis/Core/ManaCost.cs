@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -36,6 +36,11 @@ namespace DeepAnalysis.Core
         private int blackTwoHybrid;
         private int redTwoHybrid;
         private int greenTwoHybrid;
+        private int whitePhyrexianHybrid;
+        private int bluePhyrexianHybrid;
+        private int blackPhyrexianHybrid;
+        private int redPhyrexianHybrid;
+        private int greenPhyrexianHybrid;
 
         public bool Applicable { get { return applicable; } }
         public int Xs { get { return xs; } }
@@ -62,6 +67,11 @@ namespace DeepAnalysis.Core
         public int BlackTwoHybrid { get { return blackTwoHybrid; } }
         public int RedTwoHybrid { get { return redTwoHybrid; } }
         public int GreenTwoHybrid { get { return greenTwoHybrid; } }
+        public int WhitePhyrexianHybrid { get { return whitePhyrexianHybrid; } }
+        public int BluePhyrexianHybrid { get { return bluePhyrexianHybrid; } }
+        public int BlackPhyrexianHybrid { get { return blackPhyrexianHybrid; } }
+        public int RedPhyrexianHybrid { get { return redPhyrexianHybrid; } }
+        public int GreenPhyrexianHybrid { get { return greenPhyrexianHybrid; } }
 
         public ManaCost(string cost)
             : this(cost != null && cost.Trim() != string.Empty)
@@ -121,17 +131,34 @@ namespace DeepAnalysis.Core
                 }
                 else if (cost[i] == '{')
                 {
-                    char c1 = char.ToUpper(cost[i + 1]);
-                    char c2 = char.ToUpper(cost[i + 3]);
-
-                    if (cost[i + 4] != '}' || c1 == c2)
+                    char c1, c2;
+                    if (cost[i + 2] == '/')
                     {
-                        throw new ArgumentException("Invalid hybrid symbol in cost: " + cost);
+                        c1 = char.ToUpper(cost[i + 1]);
+                        c2 = char.ToUpper(cost[i + 3]);
+
+                        if (cost[i + 4] != '}' || c1 == c2)
+                        {
+                            throw new ArgumentException("Invalid hybrid symbol in cost: " + cost);
+                        }
+
+                        i += 4;
+                    }
+                    else
+                    {
+                        c1 = char.ToUpper(cost[i + 1]);
+                        c2 = char.ToUpper(cost[i + 2]);
+
+                        if (cost[i + 3] != '}' || c1 == c2)
+                        {
+                            throw new ArgumentException("Invalid hybrid symbol in cost: " + cost);
+                        }
+
+                        i += 3;
                     }
 
-                    i += 4;
-
                     // find out which sort of hybrid it is
+                    bool isPhyrexian = false;
                     bool hasColorless = false;
                     bool hasWhite = false;
                     bool hasBlack = false;
@@ -142,6 +169,10 @@ namespace DeepAnalysis.Core
                     if (c1 == '2' || c2 == '2')
                     {
                         hasColorless = true;
+                    }
+                    if (c2 == 'P')
+                    {
+                        isPhyrexian = true;
                     }
                     if (c1 == 'W' || c2 == 'W')
                     {
@@ -180,6 +211,22 @@ namespace DeepAnalysis.Core
                     if (hasColorless && hasRed)
                     {
                         redTwoHybrid++;
+                    }
+                    if (isPhyrexian && hasWhite)
+                    {
+                        whitePhyrexianHybrid++;
+                    }
+                    if (isPhyrexian && hasBlue)
+                    {
+                        bluePhyrexianHybrid++;
+                    }
+                    if (isPhyrexian && hasBlack)
+                    {
+                        whitePhyrexianHybrid++;
+                    }
+                    if (isPhyrexian && hasRed)
+                    {
+                        redPhyrexianHybrid++;
                     }
                     if (hasColorless && hasGreen)
                     {
@@ -256,13 +303,19 @@ namespace DeepAnalysis.Core
             blackTwoHybrid = 0;
             redTwoHybrid = 0;
             greenTwoHybrid = 0;
+            whitePhyrexianHybrid = 0;
+            bluePhyrexianHybrid = 0;
+            blackPhyrexianHybrid = 0;
+            redPhyrexianHybrid = 0;
+            greenPhyrexianHybrid = 0;
         }
 
         public ManaCost(int Xs, int Ys, int Zs, int Colorless, int White, int Blue, int Black, int Red, int Green,
             int WhiteBlueHybrid, int WhiteBlackHybrid, int WhiteRedHybrid, int WhiteGreenHybrid,
             int BlueBlackHybrid, int BlueRedHybrid, int BlueGreenHybrid,
             int BlackRedHybrid, int BlackGreenHybrid, int RedGreenHybrid,
-            int WhiteTwoHybrid, int BlueTwoHybrid, int BlackTwoHybrid, int RedTwoHybrid, int GreenTwoHybrid)
+            int WhiteTwoHybrid, int BlueTwoHybrid, int BlackTwoHybrid, int RedTwoHybrid, int GreenTwoHybrid,
+            int WhitePhyrexianHybrid, int BluePhyrexianHybrid, int BlackPhyrexianHybrid, int RedPhyrexianHybrid, int GreenPhyrexianHybrid)
         {
             applicable = true;
             xs = Xs;
@@ -289,6 +342,11 @@ namespace DeepAnalysis.Core
             blackTwoHybrid = BlackTwoHybrid;
             redTwoHybrid = RedTwoHybrid;
             greenTwoHybrid = GreenTwoHybrid;
+            whitePhyrexianHybrid = WhitePhyrexianHybrid;
+            bluePhyrexianHybrid = BluePhyrexianHybrid;
+            blackPhyrexianHybrid = BlackPhyrexianHybrid;
+            redPhyrexianHybrid = RedPhyrexianHybrid;
+            greenPhyrexianHybrid = GreenPhyrexianHybrid;
         }
 
         public int ConvertedManaCost
@@ -299,8 +357,9 @@ namespace DeepAnalysis.Core
                     WhiteBlueHybrid + WhiteBlackHybrid + WhiteRedHybrid + WhiteGreenHybrid + 
                     BlueBlackHybrid + BlueRedHybrid + BlueGreenHybrid + 
                     BlackRedHybrid + BlackGreenHybrid + 
-                    RedGreenHybrid + 
-                    WhiteTwoHybrid + BlueTwoHybrid + BlackTwoHybrid + RedTwoHybrid + GreenTwoHybrid;
+                    RedGreenHybrid +
+                    2 * WhiteTwoHybrid + 2 * BlueTwoHybrid + 2 * BlackTwoHybrid + 2 * RedTwoHybrid + 2 * GreenTwoHybrid +
+                    WhitePhyrexianHybrid + BluePhyrexianHybrid + BlackPhyrexianHybrid + RedPhyrexianHybrid + GreenPhyrexianHybrid;
             }
         }
 
@@ -312,7 +371,8 @@ namespace DeepAnalysis.Core
                     BlueBlackHybrid + BlueRedHybrid + BlueGreenHybrid +
                     BlackRedHybrid + BlackGreenHybrid +
                     RedGreenHybrid +
-                    WhiteTwoHybrid + BlueTwoHybrid + BlackTwoHybrid + RedTwoHybrid + GreenTwoHybrid > 0;
+                    WhiteTwoHybrid + BlueTwoHybrid + BlackTwoHybrid + RedTwoHybrid + GreenTwoHybrid +
+                    WhitePhyrexianHybrid + BluePhyrexianHybrid + BlackPhyrexianHybrid + RedPhyrexianHybrid + GreenPhyrexianHybrid > 0;
             }
         }
 
@@ -334,7 +394,7 @@ namespace DeepAnalysis.Core
         {
             get
             {
-                return White + WhiteBlueHybrid + WhiteBlackHybrid + WhiteRedHybrid + WhiteGreenHybrid + WhiteTwoHybrid > 0;
+                return White + WhiteBlueHybrid + WhiteBlackHybrid + WhiteRedHybrid + WhiteGreenHybrid + WhiteTwoHybrid + WhitePhyrexianHybrid > 0;
             }
         }
 
@@ -342,7 +402,7 @@ namespace DeepAnalysis.Core
         {
             get
             {
-                return Blue + WhiteBlueHybrid + BlueBlackHybrid + BlueRedHybrid + BlueGreenHybrid + BlueTwoHybrid > 0;
+                return Blue + WhiteBlueHybrid + BlueBlackHybrid + BlueRedHybrid + BlueGreenHybrid + BlueTwoHybrid + BluePhyrexianHybrid > 0;
             }
         }
 
@@ -350,7 +410,7 @@ namespace DeepAnalysis.Core
         {
             get
             {
-                return Black + BlueBlackHybrid + WhiteBlackHybrid + BlackRedHybrid + BlackGreenHybrid + BlackTwoHybrid > 0;
+                return Black + BlueBlackHybrid + WhiteBlackHybrid + BlackRedHybrid + BlackGreenHybrid + BlackTwoHybrid + BlackPhyrexianHybrid > 0;
             }
         }
 
@@ -358,7 +418,7 @@ namespace DeepAnalysis.Core
         {
             get
             {
-                return Red + BlueRedHybrid + BlackRedHybrid + WhiteRedHybrid + RedGreenHybrid + RedTwoHybrid > 0;
+                return Red + BlueRedHybrid + BlackRedHybrid + WhiteRedHybrid + RedGreenHybrid + RedTwoHybrid + RedPhyrexianHybrid > 0;
             }
         }
 
@@ -366,7 +426,7 @@ namespace DeepAnalysis.Core
         {
             get
             {
-                return Green + BlueGreenHybrid + BlackGreenHybrid + RedGreenHybrid + WhiteGreenHybrid + GreenTwoHybrid > 0;
+                return Green + BlueGreenHybrid + BlackGreenHybrid + RedGreenHybrid + WhiteGreenHybrid + GreenTwoHybrid + GreenPhyrexianHybrid > 0;
             }
         }
 
@@ -524,6 +584,36 @@ namespace DeepAnalysis.Core
                 sb.Append("{G/2}");
             }
 
+            // WhitePhyrexian
+            for (int i = 0; i < WhitePhyrexianHybrid; i++)
+            {
+                sb.Append("{WP}");
+            }
+
+            // BluePhyrexian
+            for (int i = 0; i < BluePhyrexianHybrid; i++)
+            {
+                sb.Append("{UP}");
+            }
+
+            // BlackPhyrexian
+            for (int i = 0; i < BlackPhyrexianHybrid; i++)
+            {
+                sb.Append("{BP}");
+            }
+
+            // RedPhyrexian
+            for (int i = 0; i < RedPhyrexianHybrid; i++)
+            {
+                sb.Append("{RP}");
+            }
+
+            // GreenPhyrexian
+            for (int i = 0; i < GreenPhyrexianHybrid; i++)
+            {
+                sb.Append("{GP}");
+            }
+
             return sb.ToString();
         }
 
@@ -540,7 +630,10 @@ namespace DeepAnalysis.Core
                 BlackGreenHybrid == other.BlackGreenHybrid && RedGreenHybrid == other.RedGreenHybrid &&
                 WhiteTwoHybrid == other.WhiteTwoHybrid && BlueTwoHybrid == other.BlueTwoHybrid &&
                 BlackTwoHybrid == other.BlackTwoHybrid && RedTwoHybrid == other.RedTwoHybrid &&
-                GreenTwoHybrid == other.GreenTwoHybrid;
+                GreenTwoHybrid == other.GreenTwoHybrid &&
+                WhitePhyrexianHybrid == other.WhitePhyrexianHybrid && BluePhyrexianHybrid == other.BluePhyrexianHybrid &&
+                BlackPhyrexianHybrid == other.BlackPhyrexianHybrid && RedPhyrexianHybrid == other.RedPhyrexianHybrid &&
+                GreenPhyrexianHybrid == other.GreenPhyrexianHybrid;
         }
 
         public override bool Equals(object other)
