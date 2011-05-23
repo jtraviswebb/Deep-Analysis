@@ -17,6 +17,8 @@ namespace DeepAnalysis.Core
         private string flavorText;
         private Rarity rarity;
         private string imageUrl;
+        private string sourceUrl;
+        //private Card card;
 
         public string Set { get { return set; } }
         public int CollectorNumber { get { return collectorNumber; } }
@@ -24,8 +26,10 @@ namespace DeepAnalysis.Core
         public string FlavorText { get { return flavorText; } }
         public Rarity Rarity { get { return rarity; } }
         public string ImageUrl { get { return imageUrl; } }
+        public string SourceUrl { get { return sourceUrl; } }
+        //public Card Card { get { return card; } }
 
-        public Edition(string Set, int CollectorNumber, string Artist, string FlavorText, Rarity Rarity, string ImageUrl)
+        public Edition(string Set, int CollectorNumber, string Artist, string FlavorText, Rarity Rarity, string ImageUrl, string SourceUrl)
         {
             set = Set;
             collectorNumber = CollectorNumber;
@@ -33,6 +37,7 @@ namespace DeepAnalysis.Core
             flavorText = FlavorText;
             rarity = Rarity;
             imageUrl = ImageUrl;
+            sourceUrl = SourceUrl;
         }
 
         public override string ToString()

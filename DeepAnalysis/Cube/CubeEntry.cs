@@ -5,6 +5,7 @@ using System.Text;
 using System.Xml.Serialization;
 using System.Xml.Schema;
 using System.Xml;
+using DeepAnalysis.Core;
 
 namespace DeepAnalysis.Cube
 {
@@ -36,6 +37,14 @@ namespace DeepAnalysis.Cube
             cardName = CardName;
             setName = SetName;
             collectorNumber = CollectorNumber;
+            status = Status;
+        }
+
+        public CubeEntry(Card Card, Edition Edition, CubeStatus Status)
+        {
+            cardName = Card.Name;
+            setName = Edition.Set;
+            collectorNumber = Edition.CollectorNumber;
             status = Status;
         }
 

@@ -34,6 +34,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Google.GData.Client, Version=1.8.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Extensions, Version=1.8.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.GData.Spreadsheets, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3f77feb76ff0d9a1, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Spreadsheets.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,10 +60,12 @@
     <Compile Include="Core\ManaCost.cs" />
     <Compile Include="Core\Rarity.cs" />
     <Compile Include="Cube\CubeEntry.cs" />
-    <Compile Include="Parsers\McdiCardParser.cs" />
-    <Compile Include="Parsers\McdiParser.cs" />
-    <Compile Include="Parsers\McdiSetParser.cs" />
-    <Compile Include="Parsers\UrlScraper.cs" />
+    <Compile Include="Cube\GdocCube.cs" />
+    <Compile Include="Net\McdiCardParser.cs" />
+    <Compile Include="Net\McdiSiteParser.cs" />
+    <Compile Include="Net\McdiSetParser.cs" />
+    <Compile Include="Net\McdiPricer.cs" />
+    <Compile Include="Net\UrlScraper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
