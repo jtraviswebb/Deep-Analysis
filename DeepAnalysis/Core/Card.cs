@@ -37,7 +37,7 @@ namespace DeepAnalysis.Core
             return sb.ToString();
         }
 
-        public override bool Equals(System.Object obj)
+        public override bool Equals(object obj)
         {
             // If parameter is null return false
             if (obj == null)
@@ -47,7 +47,7 @@ namespace DeepAnalysis.Core
 
             // If parameter cannot be cast to Card return false
             Card c = obj as Card;
-            if ((System.Object)c == null)
+            if ((object)c == null)
             {
                 return false;
             }
