@@ -6,13 +6,28 @@
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{90E7E324-7DC2-4D77-A7FB-6222F38C47BD}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DeepAnalysis</RootNamespace>
     <AssemblyName>DeepAnalysis</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>Client</TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -33,21 +48,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Google.GData.Client, Version=1.8.0.0, Culture=neutral, PublicKeyToken=04a59ca9b0273830, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Client.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Extensions, Version=1.8.0.0, Culture=neutral, PublicKeyToken=0b4c5df2ebf20876, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Google.GData.Spreadsheets, Version=1.8.0.0, Culture=neutral, PublicKeyToken=3f77feb76ff0d9a1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\..\..\..\Program Files (x86)\Google\Google Data API SDK\Redist\Google.GData.Spreadsheets.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -56,25 +64,90 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Core\Card.cs" />
+    <Compile Include="Core\Database.cs" />
     <Compile Include="Core\Edition.cs" />
     <Compile Include="Core\ManaCost.cs" />
+    <Compile Include="Core\Printing.cs" />
     <Compile Include="Core\Rarity.cs" />
+    <Compile Include="Cube\CardId.cs" />
     <Compile Include="Cube\CubeEntry.cs" />
-    <Compile Include="Cube\GdocCube.cs" />
+    <Compile Include="Depricated\GdocCube.cs" />
+    <Compile Include="Gui\WinForms\CardListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\WinForms\CardListView.Designer.cs">
+      <DependentUpon>CardListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WinForms\CardSearchView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\WinForms\CardSearchView.Designer.cs">
+      <DependentUpon>CardSearchView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WinForms\CardView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\WinForms\CardView.Designer.cs">
+      <DependentUpon>CardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Gui\WinForms\CubeView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Gui\WinForms\CubeView.Designer.cs">
+      <DependentUpon>CubeView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Net\CardPricer.cs" />
     <Compile Include="Net\Mcdi\McdiCardParser.cs" />
     <Compile Include="Net\Mcdi\McdiSiteParser.cs" />
-    <Compile Include="Net\Mcdi\McdiSetParser.cs" />
+    <Compile Include="Net\Mcdi\McdiEditionParser.cs" />
     <Compile Include="Net\Mcdi\McdiCardPricer.cs" />
     <Compile Include="Net\PhysicalCondition.cs" />
     <Compile Include="Net\PriceEntry.cs" />
     <Compile Include="Net\Purchase.cs" />
     <Compile Include="Net\PurchaseOptimizer.cs" />
     <Compile Include="Net\UrlScraper.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Depricated\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Gui\WinForms\CardListView.resx">
+      <DependentUpon>CardListView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WinForms\CardSearchView.resx">
+      <DependentUpon>CardSearchView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WinForms\CardView.resx">
+      <DependentUpon>CardView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gui\WinForms\CubeView.resx">
+      <DependentUpon>CubeView.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Net\Gatherer\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

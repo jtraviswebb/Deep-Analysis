@@ -3,6 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeepAnalysis", "DeepAnalysis\DeepAnalysis.csproj", "{90E7E324-7DC2-4D77-A7FB-6222F38C47BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomSetEditor", "CustomSetEditor\CustomSetEditor.csproj", "{9E3C33F8-64A4-4602-A8C2-2C1F18D8F4F4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebExtraction", "WebExtraction\WebExtraction.csproj", "{2E166352-A540-4AFF-9BBD-A9FFF51D5417}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTest", "WpfTest\WpfTest.csproj", "{FF4C81F5-5D1B-48C3-AAF2-8328A8E500B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinFormsTest", "WinFormsTest\WinFormsTest.csproj", "{0D364093-24D1-4245-AC76-3EEC76F5629A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +21,22 @@ Global
 		{90E7E324-7DC2-4D77-A7FB-6222F38C47BD}.Debug|x86.Build.0 = Debug|x86
 		{90E7E324-7DC2-4D77-A7FB-6222F38C47BD}.Release|x86.ActiveCfg = Release|x86
 		{90E7E324-7DC2-4D77-A7FB-6222F38C47BD}.Release|x86.Build.0 = Release|x86
+		{9E3C33F8-64A4-4602-A8C2-2C1F18D8F4F4}.Debug|x86.ActiveCfg = Debug|x86
+		{9E3C33F8-64A4-4602-A8C2-2C1F18D8F4F4}.Debug|x86.Build.0 = Debug|x86
+		{9E3C33F8-64A4-4602-A8C2-2C1F18D8F4F4}.Release|x86.ActiveCfg = Release|x86
+		{9E3C33F8-64A4-4602-A8C2-2C1F18D8F4F4}.Release|x86.Build.0 = Release|x86
+		{2E166352-A540-4AFF-9BBD-A9FFF51D5417}.Debug|x86.ActiveCfg = Debug|x86
+		{2E166352-A540-4AFF-9BBD-A9FFF51D5417}.Debug|x86.Build.0 = Debug|x86
+		{2E166352-A540-4AFF-9BBD-A9FFF51D5417}.Release|x86.ActiveCfg = Release|x86
+		{2E166352-A540-4AFF-9BBD-A9FFF51D5417}.Release|x86.Build.0 = Release|x86
+		{FF4C81F5-5D1B-48C3-AAF2-8328A8E500B2}.Debug|x86.ActiveCfg = Debug|x86
+		{FF4C81F5-5D1B-48C3-AAF2-8328A8E500B2}.Debug|x86.Build.0 = Debug|x86
+		{FF4C81F5-5D1B-48C3-AAF2-8328A8E500B2}.Release|x86.ActiveCfg = Release|x86
+		{FF4C81F5-5D1B-48C3-AAF2-8328A8E500B2}.Release|x86.Build.0 = Release|x86
+		{0D364093-24D1-4245-AC76-3EEC76F5629A}.Debug|x86.ActiveCfg = Debug|x86
+		{0D364093-24D1-4245-AC76-3EEC76F5629A}.Debug|x86.Build.0 = Debug|x86
+		{0D364093-24D1-4245-AC76-3EEC76F5629A}.Release|x86.ActiveCfg = Release|x86
+		{0D364093-24D1-4245-AC76-3EEC76F5629A}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

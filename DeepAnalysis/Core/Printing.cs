@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Xml;
-using System.Xml.Schema;
-using System.Xml.Serialization;
 
 namespace DeepAnalysis.Core
 {
     [Serializable]
-    public class Edition
+    public class Printing
     {
-        public string Name { get; set; }
-        public string Abbreviation { get; set; }
+        public Edition Edition { get; set; }
+        public int CollectorNumber { get; set; }
+        public string Artist { get; set; }
+        public string FlavorText { get; set; }
+        public Rarity Rarity { get; set; }
+        public string ImageUrl { get; set; }
         public string SourceUrl { get; set; }
 
-        public Edition()
+        public Printing()
         {
         }
 
@@ -23,7 +24,7 @@ namespace DeepAnalysis.Core
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.Append(Name).Append("(").Append(Abbreviation).Append(")");
+            sb.Append(Edition).Append('@').Append(Rarity).Append(',').Append(CollectorNumber).Append(":").Append(Artist);
 
             return sb.ToString();
         }
@@ -37,28 +38,31 @@ namespace DeepAnalysis.Core
             }
 
             // If parameter cannot be cast to Card return false
-            Edition e = obj as Edition;
-            if ((object)e == null)
+            Printing p = obj as Printing;
+            if ((object)p == null)
             {
                 return false;
             }
 
             // Return true if the fields match
-            return Equals(e);
+            return Equals(p);
         }
 
-        public bool Equals(Edition e)
+        public bool Equals(Printing p)
         {
             // If parameter is null return false
-            if ((object)e == null)
+            if ((object)p == null)
             {
                 return false;
             }
 
             // Return true if the fields match
             // This doesn't include url's because currently those are based on the parsed source
-            return Name == e.Name &&
-                Abbreviation == e.Abbreviation;
+            return Edition == p.Edition &&
+                CollectorNumber == p.CollectorNumber &&
+                Artist == p.Artist &&
+                FlavorText == p.FlavorText &&
+                Rarity == p.Rarity;
         }
 
         public override int GetHashCode()

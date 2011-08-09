@@ -1,0 +1,11 @@
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\bin\Debug\DeepAnalysis.pdb
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.pdb
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\bin\Debug\DeepAnalysis.dll
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.dll
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.Gui.WinForms.CardListView.resources
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.Gui.WinForms.CardSearchView.resources
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.Gui.WinForms.CardView.resources
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\DeepAnalysis\obj\x86\Debug\DeepAnalysis.Gui.WinForms.CubeView.resources

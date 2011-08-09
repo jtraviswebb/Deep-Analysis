@@ -14,11 +14,11 @@ namespace DeepAnalysis.Core
         public string Typeline { get; set; }
         public string Text { get; set; }
         public ManaCost Cost { get; set; }
-        public List<Edition> Editions { get; set; }
+        public List<Printing> Printings { get; set; }
 
         public Card()
         {
-            Editions = new List<Edition>();
+            Printings = new List<Printing>();
         }
 
         public override string ToString()
@@ -29,9 +29,9 @@ namespace DeepAnalysis.Core
             sb.Append('\n').Append(Typeline);
             sb.Append('\n').Append(Text);
 
-            foreach (Edition ed in Editions)
+            foreach (Printing p in Printings)
             {
-                sb.Append("\n").Append(ed);
+                sb.Append("\n").Append(p);
             }
 
             return sb.ToString();

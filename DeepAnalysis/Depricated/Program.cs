@@ -11,6 +11,7 @@ using DeepAnalysis.Net;
 
 namespace DeepAnalysis
 {
+    /*
     class Program
     {
         //GdocCube cube = new GdocCube("jtraviswebb", "");
@@ -30,22 +31,23 @@ namespace DeepAnalysis
 
 
             // Pull from the web
-            //McdiSiteParser parser = new McdiSiteParser();
-            //List<Card> db = parser.Parse();
+            Database db = new Database();
+            McdiSiteParser parser = new McdiSiteParser(db);
+            parser.Parse();
 
             // Serialization
-            //XmlSerializer serializer = new XmlSerializer(db.GetType());
-            //TextWriter textWriter = new StreamWriter(@"C:\cards.xml");
-            //serializer.Serialize(textWriter, db);
-            //textWriter.Close();
+            TextWriter textWriter = new StreamWriter(@"C:\cards.xml");
+            XmlSerializer serializer = new XmlSerializer(db.GetType());
+            serializer.Serialize(textWriter, db);
+            textWriter.Close();
 
             // Deserialization
-            TextReader reader = new StreamReader(@"C:\cards.xml");
-            XmlSerializer serializer = new XmlSerializer(typeof(List<Card>));
-            List<Card> db = (List<Card>)serializer.Deserialize(reader);
-            reader.Close();
+            //TextReader reader = new StreamReader(@"C:\cards.xml");
+            //XmlSerializer serializer = new XmlSerializer(typeof(List<Card>));
+            //Database db = (Database)serializer.Deserialize(reader);
+            //reader.Close();
 
-            PrintSetCounts(db, "roe", true);
+            //PrintSetCounts(db, "roe", true);
             //PrintSetCounts(db, "wwk", true);
             //PrintSetCounts(db, "zen", true);
 
@@ -79,8 +81,8 @@ namespace DeepAnalysis
         {
             Console.WriteLine(setAbbreviation + " = [");
 
-            var cardsInSet = from card in db where card.Editions.Any(e => e.SetAbbreviation.ToLower() == setAbbreviation) select card;
-            bool hasMythics = (from card in cardsInSet where (from ed in card.Editions where ed.SetAbbreviation.ToLower() == setAbbreviation select ed).First().Rarity.Mainclass == Rarity.RarityMainclass.Mythic select card).Count() > 0;
+            var cardsInSet = from card in db where card.Printings.Any(p => p.Edition.Abbreviation.ToLower() == setAbbreviation) select card;
+            bool hasMythics = (from card in cardsInSet where (from p in card.Printings where p.Edition.Abbreviation.ToLower() == setAbbreviation select p).First().Rarity.Mainclass == Rarity.RarityMainclass.Mythic select card).Count() > 0;
             int highesCmc = cardsInSet.Max(c => c.Cost.ConvertedManaCost);
 
             for (int i = 0; i <= highesCmc; i++)
@@ -150,7 +152,7 @@ namespace DeepAnalysis
         {
             var cards = from card in CardsInSet
              where
-                 (from ed in card.Editions where ed.SetAbbreviation.ToLower() == SetAbbreviation select ed).First().Rarity.Mainclass == Rarity &&
+                 (from p in card.Printings where p.Edition.Abbreviation.ToLower() == SetAbbreviation select p).First().Rarity.Mainclass == Rarity &&
                  card.Cost.ConvertedManaCost == Cmc &&
                  card.Cost.IsGold &&
                                 card.Typeline.Contains("Creature")
@@ -163,7 +165,7 @@ namespace DeepAnalysis
         {
             var cards = (from card in CardsInSet
                        where
-                           (from ed in card.Editions where ed.SetAbbreviation.ToLower() == SetAbbreviation select ed).First().Rarity.Mainclass == RarityType &&
+                           (from p in card.Printings where p.Edition.Abbreviation.ToLower() == SetAbbreviation select p).First().Rarity.Mainclass == RarityType &&
                            card.Cost.ConvertedManaCost == Cmc &&
                            card.Cost.IsColorless &&
                                 card.Typeline.Contains("Creature") //&&
@@ -195,7 +197,7 @@ namespace DeepAnalysis
                 case CardColor.White:
                     cards = from card in CardsInSet
                             where
-                                (from ed in card.Editions where ed.SetAbbreviation.ToLower() == SetAbbreviation select ed).First().Rarity.Mainclass == Rarity &&
+                                (from p in card.Printings where p.Edition.Abbreviation.ToLower() == SetAbbreviation select p).First().Rarity.Mainclass == Rarity &&
                                 card.Cost.ConvertedManaCost == Cmc &&
                                 card.Cost.IsWhite &&
                                 !card.Cost.IsGold &&
@@ -205,7 +207,7 @@ namespace DeepAnalysis
                 case CardColor.Blue:
                     cards = from card in CardsInSet
                             where
-                                (from ed in card.Editions where ed.SetAbbreviation.ToLower() == SetAbbreviation select ed).First().Rarity.Mainclass == Rarity &&
+                                (from p in card.Printings where p.Edition.Abbreviation.ToLower() == SetAbbreviation select p).First().Rarity.Mainclass == Rarity &&
                                 card.Cost.ConvertedManaCost == Cmc &&
                                 card.Cost.IsBlue &&
                                 !card.Cost.IsGold &&
@@ -215,7 +217,7 @@ namespace DeepAnalysis
                 case CardColor.Black:
                     cards = from card in CardsInSet
                             where
-                                (from ed in card.Editions where ed.SetAbbreviation.ToLower() == SetAbbreviation select ed).First().Rarity.Mainclass == Rarity &&
+                                (from p in card.Printings where p.Edition.Abbreviation.ToLower() == SetAbbreviation select p).First().Rarity.Mainclass == Rarity &&
                                 card.Cost.ConvertedManaCost == Cmc &&
                                 card.Cost.IsBlack &&
                                 !card.Cost.IsGold &&
@@ -225,7 +227,7 @@ namespace DeepAnalysis
                 case CardColor.Red:
                     cards = from card in CardsInSet
                             where
-                                (from ed in card.Editions where ed.SetAbbreviation.ToLower() == SetAbbreviation select ed).First().Rarity.Mainclass == Rarity &&
+                                (from p in card.Printings where p.Edition.Abbreviation.ToLower() == SetAbbreviation select p).First().Rarity.Mainclass == Rarity &&
                                 card.Cost.ConvertedManaCost == Cmc &&
                                 card.Cost.IsRed &&
                                 !card.Cost.IsGold &&
@@ -235,7 +237,7 @@ namespace DeepAnalysis
                 case CardColor.Green:
                     cards = from card in CardsInSet
                             where
-                                (from ed in card.Editions where ed.SetAbbreviation.ToLower() == SetAbbreviation select ed).First().Rarity.Mainclass == Rarity &&
+                                (from p in card.Printings where p.Edition.Abbreviation.ToLower() == SetAbbreviation select p).First().Rarity.Mainclass == Rarity &&
                                 card.Cost.ConvertedManaCost == Cmc &&
                                 card.Cost.IsGreen &&
                                 !card.Cost.IsGold &&
@@ -249,4 +251,5 @@ namespace DeepAnalysis
             return cards.Count();
         }
     }
+     */
 }

@@ -1,0 +1,11 @@
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\bin\Debug\CustomSetEditor.exe
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\bin\Debug\CustomSetEditor.pdb
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\obj\x86\Debug\CustomSetEditor.Properties.Resources.resources
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\obj\x86\Debug\CustomSetEditor.exe
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\obj\x86\Debug\CustomSetEditor.pdb
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\obj\x86\Debug\CustomSetEditor.FormCustomSetEditor.resources
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\bin\Debug\DeepAnalysis.dll
+C:\Users\jt\documents\visual studio 2010\Projects\DeepAnalysis\CustomSetEditor\bin\Debug\DeepAnalysis.pdb
